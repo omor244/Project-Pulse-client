@@ -4,8 +4,8 @@ import AssignProject from "@/Components/Dashboard/AssignProject";
 
 const Project = () => {
     return (
-        <div>
-            assssssssss
+        <div >
+        
             <AssignProject></AssignProject>
         </div>
     );

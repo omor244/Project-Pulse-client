@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
                 <AuthProvider>
                 
                     <body
-                        className={`${geistSans.variable} antialiased grid gap-4 grid-cols-12`}
+                        className={`${geistSans.variable} antialiased flex flex-col lg:grid gap-4 bg-base-200 grid-cols-12`}
                         suppressHydrationWarning
                     >
                         
