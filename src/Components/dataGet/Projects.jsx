@@ -10,7 +10,7 @@ const Projects = () => {
     const {data: projects = [] } = useQuery({
         queryKey: ['Projects'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/projects')
+            const res = await axios.get('https://project-plus-liard.vercel.app/projects')
 
             
             return res.data

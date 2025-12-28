@@ -3,7 +3,7 @@ import useAuth from "@/Hook/sheard";
 import useRole from "@/Hook/useRole";
 import Link from "next/link";
 import { useState } from "react"; 
-import { HiOutlineHome, HiOutlineCube, HiOutlineChartBar, HiOutlineCog, HiOutlineLogout, HiOutlineUserGroup, HiMenuAlt2, HiX } from "react-icons/hi";
+import { HiOutlineHome, HiOutlineCube, HiOutlineChartBar, HiOutlineCog, HiOutlineLogout, HiOutlineUserGroup, HiMenuAlt2, HiX, HiOutlineClipboardList, HiOutlineShieldExclamation, HiOutlineDocumentAdd, HiOutlineAdjustments } from "react-icons/hi";
 
 
 
@@ -69,9 +69,9 @@ const DashboardNavber = () => {
                    
                     {
                         role.role === "employee" && <>
-                        <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Assigned Projects" href={`/dashboard/assignedProject`} />
-                        <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="View Weekly Check-in" href={`/dashboard/weekly-check-in`} />
-                        <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Blocker Reports" href={`/dashboard/Blocker-Reports`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Assigned Projects" href={`/dashboard/assignedProject`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineClipboardList size={22} />} label="View Weekly Check-in" href={`/dashboard/weekly-check-in`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineShieldExclamation size={22} />} label="Blocker Reports" href={`/dashboard/Blocker-Reports`} />
                         
                         </>
                     }
@@ -81,19 +81,19 @@ const DashboardNavber = () => {
                     {
                         role.role === "admin" && <>
                             <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Assigned Projects" href={`/dashboard/assignedProject`} />
-                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="View Weekly Check-in" href={`/dashboard/weekly-check-in`} />
-                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Blocker Reports" href={`/dashboard/Blocker-Reports`} />
-                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Create A Project" href={`/dashboard/create-project`} />
-                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCube size={22} />} label="Project Management" href={`/dashboard/manage-project`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineClipboardList size={22} />} label="View Weekly Check-in" href={`/dashboard/weekly-check-in`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineShieldExclamation size={22} />} label="Blocker Reports" href={`/dashboard/Blocker-Reports`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineDocumentAdd size={22} />} label="Create A Project" href={`/dashboard/create-project`} />
+                            <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineAdjustments size={22} />} label="Project Management" href={`/dashboard/manage-project`} />
                         </>
                     }
                     
-                    <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineChartBar size={22} />} label="Analytics" />
+                    {/* <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineChartBar size={22} />} label="Analytics" /> */}
 
-                    <div className="pt-6">
+                    {/* <div className="pt-6">
                         <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold ml-4 mb-4">Settings</p>
                         <NavItem onClick={() => setIsOpen(false)} icon={<HiOutlineCog size={22} />} label="Configurations" />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="p-4 border-t border-slate-800">

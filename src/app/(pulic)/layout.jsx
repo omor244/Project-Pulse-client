@@ -25,9 +25,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
      
-      <QueryProvider>
-        
-      <AuthProvider>
         {/* <ToastContainer
           position="top-center"
           autoClose={3000}
@@ -43,6 +40,10 @@ export default function RootLayout({ children }) {
       <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-200`}
       > 
+
+        <QueryProvider>
+
+          <AuthProvider>
          
         <header>
           <Navber></Navber>
@@ -53,10 +54,10 @@ export default function RootLayout({ children }) {
         <footer>
           <Footer></Footer>
         </footer>
-      </body>
       </AuthProvider>
    
    </QueryProvider>
+      </body>
     </html>
   );
 }

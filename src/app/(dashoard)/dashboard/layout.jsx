@@ -3,6 +3,7 @@ import "./globals.css";
 import DashboardNavbar from "@/Components/Layouts/DashboardNavber";
 import AuthProvider from "@/Provider/AuthProvider";
 import QueryProvider from "@/Query/QueryProvider";
+import PrivateRoute from "@/Provider/PrivateRoute";
 
 
 const geistSans = Geist({
@@ -25,26 +26,27 @@ export default function RootLayout({ children }) {
         
         <html lang="en" suppressHydrationWarning>
           
-            <QueryProvider>
                 
-                <AuthProvider>
                 
                     <body
                         className={`${geistSans.variable} antialiased flex flex-col lg:grid gap-4 bg-base-200 grid-cols-12`}
                         suppressHydrationWarning
-                    >
-                        
+                        >
+                        <AuthProvider>
+                        <QueryProvider>
+                    <PrivateRoute>
                         <header className="col-span-3">
                             <DashboardNavbar></DashboardNavbar>
                  
                         </header>
 
-                      
                         <main className="col-span-9">{children}</main>
 
-                    </body>
-                </AuthProvider>
+                    </PrivateRoute>
             </QueryProvider>
+                </AuthProvider>
+                    
+                    </body>
         </html>
     );
 }

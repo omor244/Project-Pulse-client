@@ -7,12 +7,12 @@ const Risk = () => {
     const { data: risk = [] } = useQuery({
         queryKey: ['Risks'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/risk')
+            const res = await axios.get('https://project-plus-liard.vercel.app/risk')
             return res.data
         }
     })
 
-    console.log(risk)
+   
     return (
         <div className="p-6 w-10/12 mx-auto">
         

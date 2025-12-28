@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 ProjectPulse - Smart Project Management System
 
-## Getting Started
+**ProjectPulse** is a robust, high-performance project management solution designed for modern teams. Built on the **MERN stack**, it streamlines the workflow between Admins, Employees, and Clients, ensuring real-time monitoring and administrative efficiency.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ProjectPulse is engineered using a modern and scalable tech stack:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* **Frontend**: **Next.js** (React-based framework for SSR and optimized routing), **Tailwind CSS**, and **DaisyUI**.
+* **State Management**: **TanStack Query (React Query)** for efficient server-side state synchronization.
+* **Backend**: **Node.js** and **Express.js** for a fast, minimalist web API.
+* **Database**: **MongoDB** for flexible, NoSQL data storage.
+* **Security**: **Firebase Authentication** integrated with **JWT (JSON Web Tokens)** for secure, role-based access.
+* **Deployment**: Vercel (Frontend) and Render/Railway (Backend).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚙️ How It Works
 
-To learn more about Next.js, take a look at the following resources:
+ProjectPulse utilizes a sophisticated architecture to ensure data integrity and security:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Secure Authentication & Role-Based Access
+When a user logs in via **Firebase**, the system generates a **JWT** to secure subsequent API requests. The application features a specialized **Private Route** system that prevents unauthorized access. It includes a custom "Hydration-safe" loader that monitors the Firebase `onAuthStateChanged` observer before rendering protected content.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Dashboard Intelligence (Overview)
+Upon successful authentication, users are greeted with a professional **Overview** dashboard. Using **TanStack Query**, the system fetches project metrics (like total project length) and displays them through modern, animated Stat Cards.
 
-## Deploy on Vercel
+### 3. Workflow Management
+* **Admins**: Can create and manage global projects, assign team members, and oversee blocker reports.
+* **Employees**: Perform weekly check-ins to log their progress and report technical "Blockers" that hinder development.
+* **Real-time Feedback**: Data is synchronized across the dashboard, ensuring that project "Pulses" (status updates) are visible instantly.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Blocker & Check-in System
+The system categorizes issues using specialized icons and color-coded status indicators (Critical, Pending, Resolved), allowing Admins to prioritize and resolve bottlenecks immediately.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ✨ Key Features
+
+* **Role-Based Dashboards**: Customized views for Admins, Employees, and Clients.
+* **Weekly Check-ins**: Automated tracking of employee progress.
+* **Blocker Reporting**: Dedicated module for flagging and resolving project hurdles.
+* **Optimized Performance**: Leverages Next.js SSR and client-side caching for lightning-fast navigation.
+* **Modern UI**: A sleek, professional interface with skeleton loaders and animated transitions.
+
+---
+
+## 🚀 Getting Started
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/project-pulse.git](https://github.com/your-username/project-pulse.git)
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Set up Environment Variables:**
+    Create a `.env.local` file and add your Firebase and MongoDB credentials.
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.

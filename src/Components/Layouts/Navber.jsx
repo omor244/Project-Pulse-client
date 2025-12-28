@@ -58,15 +58,15 @@ const Navber = () => {
                                     <span className={`text-sm font-bold ${pathname == "/" ? ' text-white' : "text-slate-600"}`}>{user?.displayName}</span>
                                 </div>
 
-                                {/* DaisyUI Dropdown */}
+                           
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar online">
                                         <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                             <img  src={user?.photoURL}  alt="Profile" />
                                         </div>
                                     </div>
-                                    <ul tabIndex={0} className="mt-3 z-[10] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-gray-100">
-                                        <li><Link href="/profile">Profile Settings</Link></li>
+                                    <ul tabIndex={0} className={`mt-3 z-[10] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 ${pathname == '/' && 'text-black'} rounded-box w-52 border border-gray-100`}>
+                                        <li><Link href="/dashboard">Dashboard</Link></li>
                                         <li><button onClick={() => logOut()} className="text-error font-semibold">Logout</button></li>
                                     </ul>
                                 </div>
@@ -74,7 +74,7 @@ const Navber = () => {
                         </> : <> <Link href={'/login'} className="btn btn-primary">Login</Link> </>
                     }
 
-                    {/* Mobile Menu Button */}
+              
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
