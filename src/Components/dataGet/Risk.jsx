@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Risk = () => {
     const { data: risk = [] } = useQuery({
-        queryKey: ['risks'],
+        queryKey: ['Risks'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/risk')
             return res.data

@@ -21,7 +21,7 @@ const AssignProject = () => {
     if (loading || isQueryLoading) {
         return (
             <div className="flex items-center justify-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
         );
     }
@@ -69,7 +69,7 @@ const AssignProject = () => {
                                         <td className="p-5">
                                             <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${project.status === 'Completed' ? 'bg-emerald-100 text-emerald-600' : 'bg-amber-100 text-amber-600'
                                                 }`}>
-                                                {project.status}
+                                                { project.status }
                                             </span>
                                         </td>
                                         <td className="p-5">

@@ -5,10 +5,13 @@ import { usePathname } from "next/navigation";
 import Logo from "../button/Logo";
 
 import useAuth from "@/Hook/sheard";
+import Image from "next/image";
+import useRole from "@/Hook/useRole";
 
 const Navber = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
+    const {role} = useRole()
     const { logOut, user } = useAuth()
 
 
@@ -51,7 +54,7 @@ const Navber = () => {
                         user ? <>
                             <div className="hidden md:flex items-center gap-4">
                                 <div className="flex flex-col items-end mr-2 text-right">
-                                    <span className="text-[10px] font-bold text-secondary uppercase tracking-widest leading-none">Admin</span>
+                                    <span className="text-[10px] font-bold text-secondary uppercase tracking-widest leading-none">{role }</span>
                                     <span className={`text-sm font-bold ${pathname == "/" ? ' text-white' : "text-slate-600"}`}>{user?.displayName}</span>
                                 </div>
 
@@ -59,7 +62,7 @@ const Navber = () => {
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar online">
                                         <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src={user?.photUrl} alt="Profile" />
+                                            <img  src={user?.photoURL}  alt="Profile" />
                                         </div>
                                     </div>
                                     <ul tabIndex={0} className="mt-3 z-[10] p-2 shadow-xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-gray-100">

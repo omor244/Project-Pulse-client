@@ -3,7 +3,7 @@ import "./globals.css";
 import DashboardNavbar from "@/Components/Layouts/DashboardNavber";
 import AuthProvider from "@/Provider/AuthProvider";
 import QueryProvider from "@/Query/QueryProvider";
-import { ToastContainer } from "react-toastify";
+
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        // suppressHydrationWarning ব্রাউজার এক্সটেনশন জনিত এরর দূর করে
+        
         <html lang="en" suppressHydrationWarning>
           
             <QueryProvider>
@@ -34,13 +34,13 @@ export default function RootLayout({ children }) {
                         suppressHydrationWarning
                     >
                         
-                        <header className="  col-span-3">
+                        <header className="col-span-3">
                             <DashboardNavbar></DashboardNavbar>
-                    <ToastContainer />
+                 
                         </header>
 
                       
-                        <main className="col-span-8">{children}</main>
+                        <main className="col-span-9">{children}</main>
 
                     </body>
                 </AuthProvider>

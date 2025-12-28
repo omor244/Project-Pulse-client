@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
       <QueryProvider>
         
       <AuthProvider>
-        <ToastContainer
+        {/* <ToastContainer
           position="top-center"
           autoClose={3000}
           hideProgressBar={false}
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           draggable
           pauseOnHover
           theme="light"
-        />
+        /> */}
       <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-200`}
       > 
