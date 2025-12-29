@@ -51,14 +51,14 @@ The system categorizes issues using specialized icons and color-coded status ind
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/project-pulse.git](https://github.com/your-username/project-pulse.git)
+    git clone (https://github.com/omor244/Project-Pulse-client)
     ```
 2.  **Install dependencies:**
     ```bash
     npm install
     ```
 3.  **Set up Environment Variables:**
-    Create a `.env.local` file and add your Firebase and MongoDB credentials.
+    Create a `.env` file and add your Firebase and MongoDB credentials.
 4.  **Run the development server:**
     ```bash
     npm run dev
@@ -66,6 +66,3 @@ The system categorizes issues using specialized icons and color-coded status ind
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
