@@ -3,7 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "../button/Logo";
-
 import useAuth from "@/Hook/sheard";
 import Image from "next/image";
 import useRole from "@/Hook/useRole";
@@ -11,23 +10,23 @@ import useRole from "@/Hook/useRole";
 const Navber = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
-    const {role} = useRole()
+    const roleData = useRole() || { role: null, isLoading: false };
+    const { role } = roleData;
     const { logOut, user } = useAuth()
 
 
   
 
-    // Active Link Styling Function (Next.js logic)
     const getLinkClass = (path) => {
         const isActive = pathname === path;
         return `flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isActive
                 ? "bg-primary text-white shadow-md shadow-blue-200"
-            : ` ${pathname == '/' ? 'text-white' : 'text-gray-600'} hover:bg-slate-100 hover:text-primary`
+            : ` ${pathname == '/' && 'text-white' } hover:bg-slate-100 hover:text-primary`
             }`;
     };
 
     return (
-        <div className={` ${pathname == "/" ? 'bg-[#020617] text-white' : "bg-white"}   border-b border-gray-100 sticky top-0 z-50`}>
+        <div className={` bg-[#020617] text-white   border-b border-gray-100 sticky top-0 z-50`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
 
@@ -54,7 +53,7 @@ const Navber = () => {
                         user ? <>
                             <div className="hidden md:flex items-center gap-4">
                                 <div className="flex flex-col items-end mr-2 text-right">
-                                    <span className="text-[10px] font-bold text-secondary uppercase tracking-widest leading-none">{role }</span>
+                                    <span className="text-[10px] font-bold text-secondary uppercase tracking-widest leading-none">{role || 'User'}</span>
                                     <span className={`text-sm font-bold ${pathname == "/" ? ' text-white' : "text-slate-600"}`}>{user?.displayName}</span>
                                 </div>
 

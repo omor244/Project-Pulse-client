@@ -1,10 +1,9 @@
 import Projects from "@/Components/dataGet/Projects";
 
-
 const Project = () => {
     return (
-        <div className="bg-base-100 py-12 w-10/12 mx-auto">
-           <Projects></Projects>
+        <div className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 min-h-screen">
+            <Projects />
         </div>
     );
 };

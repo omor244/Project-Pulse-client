@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: light --default
+  themes: dark --default
 }
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: "dark";
   default: true;
   /* Brand */
   --color-primary: oklch(65% 0.23 35);
@@ -13,9 +13,9 @@
   --color-accent: oklch(72% 0.20 55);
 
   /* Base */
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97% 0.01 95);
-  --color-base-300: oklch(92% 0.015 95);
+  --color-base-100: oklch(15% 0.02 260);
+  --color-base-200: oklch(20% 0.02 260);
+  --color-base-300: oklch(25% 0.02 260);
 
   /* Neutral */
   --color-neutral: oklch(35% 0.01 260);
@@ -23,7 +23,159 @@
 
   /* Feedback */
   --color-success: oklch(70% 0.17 145);
+  --color-warning: oklch(65% 0.2 50);
   --color-error: oklch(62% 0.24 28);
 }
 
-@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 8s linear infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 1000px 100%;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out;
+}
+
+/* Glass morphism effect */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4f46e5, #9333ea, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(79, 70, 229, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: rgba(79, 70, 229, 0.3);
+  color: white;
+}
+
+/* Dark theme default */
+body {
+  @apply bg-slate-950 text-white;
+}
+
+* {
+  @apply transition-colors duration-300;
+}

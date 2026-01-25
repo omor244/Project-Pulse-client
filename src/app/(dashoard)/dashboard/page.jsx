@@ -1,3 +1,4 @@
+"use client"
 import Overview from "@/Components/Dashboard/Overview";
 
 export default function DashboardPage() {

@@ -15,7 +15,16 @@ import { auth } from '@/firebase/firebase.init';
 
 
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({
+    loading: true,
+    user: null,
+    setUser: () => {},
+    createUser: () => {},
+    signIn: () => {},
+    signInWithGoogle: () => {},
+    logOut: () => {},
+    updateUserProfile: () => {},
+})
 
 
 const googleProvider = new GoogleAuthProvider();

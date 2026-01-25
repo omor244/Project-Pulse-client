@@ -24,23 +24,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className="dark">
           
                 
                 
                     <body
-                        className={`${geistSans.variable} antialiased flex flex-col lg:grid gap-4 bg-base-200 grid-cols-12`}
-                        suppressHydrationWarning
+                        className={`${geistSans.variable} antialiased lg:grid gap-4 grid-cols-12 dark:bg-slate-950 dark:text-slate-100`}
+                       
                         >
                         <AuthProvider>
                         <QueryProvider>
                     <PrivateRoute>
-                        <header className="col-span-3">
+                            <header className="col-span-3 bg-slate-900 dark:bg-slate-900 border-r sticky top-0 z-50 border-slate-700 dark:border-slate-700 shadow-sm lg:shadow-none">
                             <DashboardNavbar></DashboardNavbar>
                  
                         </header>
 
-                        <main className="col-span-9">{children}</main>
+                        <main className="col-span-9 dark:bg-slate-950">{children}</main>
 
                     </PrivateRoute>
             </QueryProvider>

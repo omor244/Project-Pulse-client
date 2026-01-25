@@ -3,14 +3,13 @@ import Features from "@/Components/Home/Features";
 import HealthScale from "@/Components/Home/HealthScale";
 import HowItWorks from "@/Components/Home/HowItWorks";
 
-
 export default function Home() {
   return (
-    <div className="bg-base-100">
-      <Banner></Banner>
-      <Features></Features>
-      <HealthScale></HealthScale>
-      <HowItWorks></HowItWorks>
+    <div className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 min-h-screen">
+      <Banner />
+      <Features />
+      <HealthScale />
+      <HowItWorks />
     </div>
   );
 }

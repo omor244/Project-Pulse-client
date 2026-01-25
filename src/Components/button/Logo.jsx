@@ -12,7 +12,7 @@ const Logo = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
             </div>
-            <span className={`${pathname == '/' ? "text-white" : "text-black"} text-xl font-bold tracking-tight  uppercase hidden sm:block`}>
+            <span className={`text-white text-xl font-bold tracking-tight  uppercase hidden sm:block`}>
                 Project<span className="text-primary">Pulse</span>
             </span>
         </Link>

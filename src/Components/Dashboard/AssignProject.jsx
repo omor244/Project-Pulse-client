@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../useAxiosSecure";
 import useAuth from "@/Hook/sheard";
-import { HiOutlineInbox, HiChevronRight } from "react-icons/hi";
+import { HiOutlineInbox, HiChevronRight, HiOutlineFire, HiOutlineShieldCheck, HiOutlineCalendarDays } from "react-icons/hi2";
 import Link from "next/link";
 
 const AssignProject = () => {
@@ -20,82 +20,134 @@ const AssignProject = () => {
 
     if (loading || isQueryLoading) {
         return (
-            <div className="flex items-center justify-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            <div className="flex flex-col items-center justify-center min-h-[500px] gap-3">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+                <p className="text-slate-400 font-bold animate-pulse">Loading your projects...</p>
             </div>
         );
     }
 
+    const getRiskBadgeStyle = (risk) => {
+        switch (risk?.toLowerCase()) {
+            case 'high':
+                return 'bg-error/10 text-error border border-error/20';
+            case 'medium':
+                return 'bg-warning/10 text-warning border border-warning/20';
+            default:
+                return 'bg-emerald-100 text-emerald-600 border border-emerald-200';
+        }
+    };
+
+    const getStatusBadgeStyle = (status) => {
+        switch (status?.toLowerCase()) {
+            case 'completed':
+                return 'bg-emerald-100 text-emerald-600';
+            case 'on hold':
+                return 'bg-warning/10 text-warning';
+            default:
+                return 'bg-primary/10 text-primary';
+        }
+    };
+
     return (
-        <div className="p-4 md:p-8 max-w-7xl mx-auto">
+        <div className="p-4 md:p-10 max-w-7xl mx-auto">
             {/* --- Heading Section --- */}
-            <div className="mb-10 border-l-4 border-indigo-600 pl-6 py-2 bg-indigo-50/30 rounded-r-xl">
-                <h1 className="text-3xl font-black text-slate-800 tracking-tight">
-                    Assigned Projects
-                </h1>
-                <p className="text-slate-500 font-medium mt-1">
-                    Manage and track the progress of projects linked to <span className="text-indigo-600 font-bold">{user?.email}</span>
-                </p>
+            <div className="mb-10">
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-3 bg-indigo-600/10 rounded-2xl text-indigo-600">
+                        <HiOutlineCalendarDays size={28} />
+                    </div>
+                    <div>
+                        <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+                            Assigned <span className="text-indigo-600">Projects</span>
+                        </h1>
+                        <p className="text-slate-500 font-medium text-sm mt-1">
+                            Manage and track all projects assigned to you
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* --- Project Stats --- */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div className="bg-white p-6 rounded-[1.5rem] border border-slate-100 shadow-sm">
+                    <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Total Assigned</p>
+                    <h3 className="text-3xl font-black text-slate-800">{assigned.length}</h3>
+                </div>
+                <div className="bg-white p-6 rounded-[1.5rem] border border-slate-100 shadow-sm">
+                    <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Active</p>
+                    <h3 className="text-3xl font-black text-primary">{assigned.filter(p => p.status !== 'Completed').length}</h3>
+                </div>
+                <div className="bg-white p-6 rounded-[1.5rem] border border-slate-100 shadow-sm">
+                    <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2">Completed</p>
+                    <h3 className="text-3xl font-black text-emerald-600">{assigned.filter(p => p.status === 'Completed').length}</h3>
+                </div>
             </div>
 
             {/* --- Project List (Without Cards) --- */}
             {assigned.length > 0 ? (
-                <div className="overflow-hidden bg-white rounded-[2rem] border border-slate-100 shadow-sm">
+                <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
+                        <table className="w-full">
                             <thead>
-                                <tr className="bg-slate-50/50 border-b border-slate-100">
-                                    <th className="p-5 text-xs font-black uppercase text-slate-400 tracking-widest">Project Name</th>
-                                    <th className="p-5 text-xs font-black uppercase text-slate-400 tracking-widest">Status</th>
-                                    <th className="p-5 text-xs font-black uppercase text-slate-400 tracking-widest">Risk Level</th>
-                                    <th className="p-5 text-xs font-black uppercase text-slate-400 tracking-widest">Progress</th>
-                                    <th className="p-5 text-xs font-black uppercase text-slate-400 tracking-widest text-right">Action</th>
+                                <tr className="bg-slate-50/80 border-b border-slate-100">
+                                    <th className="p-6 text-left text-xs font-black uppercase text-slate-500 tracking-widest">Project Name</th>
+                                    <th className="p-6 text-left text-xs font-black uppercase text-slate-500 tracking-widest">Status</th>
+                                    <th className="p-6 text-left text-xs font-black uppercase text-slate-500 tracking-widest">Risk Level</th>
+                                    <th className="p-6 text-left text-xs font-black uppercase text-slate-500 tracking-widest">Progress</th>
+                                    <th className="p-6 text-center text-xs font-black uppercase text-slate-500 tracking-widest">Action</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-50">
                                 {assigned.map((project) => (
-                                    <tr key={project._id} className="hover:bg-slate-50/80 transition-colors group">
-                                        <td className="p-5">
+                                    <tr key={project._id} className="hover:bg-slate-50/60 transition-all duration-200 group">
+                                        <td className="p-6">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
-                                                    {project.project_name[0]}
+                                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                                                    {project.project_name?.[0]?.toUpperCase()}
                                                 </div>
                                                 <div>
-                                                    <p className="font-bold text-slate-800">{project.project_name}</p>
-                                                    <p className="text-xs text-slate-400 font-medium">Deadline: {project.deadline}</p>
+                                                    <p className="font-bold text-slate-800 text-base">{project.project_name}</p>
+                                                    <p className="text-xs text-slate-400 font-medium flex items-center gap-1 mt-1">
+                                                        <HiOutlineCalendarDays size={14} /> Deadline: {project.deadline}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="p-5">
-                                            <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${project.status === 'Completed' ? 'bg-emerald-100 text-emerald-600' : 'bg-amber-100 text-amber-600'
-                                                }`}>
+                                        <td className="p-6">
+                                            <span className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all ${getStatusBadgeStyle(project.status)}`}>
                                                 { project.status }
                                             </span>
                                         </td>
-                                        <td className="p-5">
+                                        <td className="p-6">
                                             <div className="flex items-center gap-2">
-                                                <div className={`w-2 h-2 rounded-full ${project.risk_level === 'High' ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'
-                                                    }`} />
-                                                <span className="text-sm font-bold text-slate-700">{project.risk_level}</span>
+                                                <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${getRiskBadgeStyle(project.risk_level)}`}>
+                                                    {project.risk_level === 'High' ? (
+                                                        <HiOutlineFire size={16} className="animate-pulse" />
+                                                    ) : (
+                                                        <HiOutlineShieldCheck size={16} />
+                                                    )}
+                                                    <span className="text-xs font-black">{project.risk_level}</span>
+                                                </div>
                                             </div>
                                         </td>
-                                        <td className="p-5">
+                                        <td className="p-6">
                                             <div className="flex items-center gap-3">
-                                                <div className="flex-1 h-2 bg-slate-100 rounded-full max-w-[100px] overflow-hidden">
+                                                <div className="flex-1 h-2 bg-slate-100 rounded-full max-w-[120px] overflow-hidden">
                                                     <div
-                                                        className="h-full bg-indigo-600 rounded-full transition-all duration-500"
+                                                        className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full transition-all duration-500 shadow-sm"
                                                         style={{ width: `${project.progress}%` }}
                                                     />
                                                 </div>
-                                                <span className="text-sm font-black text-slate-800">{project.progress}%</span>
+                                                <span className="text-sm font-black text-slate-800 min-w-fit">{project.progress}%</span>
                                             </div>
                                         </td>
-                                        <td className="p-5 text-right">
+                                        <td className="p-6 text-center">
                                             <Link
                                                 href={`/dashboard/assignedProject/${project._id}`}
-                                                className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm"
+                                                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-100 text-slate-500 group-hover:bg-indigo-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-indigo-600/30 transition-all duration-300 transform group-hover:scale-110"
                                             >
-                                                <HiChevronRight size={20} />
+                                                <HiChevronRight size={22} className="group-hover:translate-x-0.5 transition-transform" />
                                             </Link>
                                         </td>
                                     </tr>
@@ -105,10 +157,12 @@ const AssignProject = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center py-20 bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
-                    <HiOutlineInbox className="text-slate-300 text-5xl mb-4" />
-                    <h3 className="text-xl font-bold text-slate-700">No Projects Found</h3>
-                    <p className="text-slate-400 mt-2 text-center">You don't have any projects assigned at the moment.</p>
+                <div className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-white to-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
+                    <div className="p-4 bg-slate-100 rounded-full mb-4">
+                        <HiOutlineInbox className="text-slate-400 text-5xl" />
+                    </div>
+                    <h3 className="text-2xl font-black text-slate-700 mb-2">No Projects Assigned</h3>
+                    <p className="text-slate-500 font-medium text-center max-w-sm">You don't have any projects assigned at the moment. Check back soon!</p>
                 </div>
             )}
         </div>
